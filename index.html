@@ -33,7 +33,8 @@
 
     #timer-text {
       font-size: 0.8rem;
-      margin-bottom: 50px;
+      /* Increased margin so the cat doesn't hit the text */
+      margin-bottom: 60px; 
     }
 
     /* THE BAR CONTAINER */
@@ -59,21 +60,25 @@
     .cat-gif {
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
-      bottom: 32px; 
+      transform: translateX(-50%) scaleX(-1); /* Added scaleX(-1) if cat faces wrong way */
+      
+      /* VERTICAL POSITIONING */
+      /* 30px (bar height) + 4px (border) = 34px to sit on top */
+      bottom: 34px; 
+      
       width: 60px;
       height: auto;
       image-rendering: pixelated;
       z-index: 10;
     }
 
-    /* THE WATERMARK (D-Originals) */
+    /* THE WATERMARK */
     .watermark {
-      position: fixed; /* Pins it to the screen */
-      bottom: 15px;    /* Distance from bottom */
-      right: 15px;     /* Distance from right */
-      font-size: 0.5rem; /* Very small text */
-      opacity: 0.6;    /* Slightly faded */
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      font-size: 0.5rem;
+      opacity: 0.6;
     }
 
     @keyframes fillBar {
