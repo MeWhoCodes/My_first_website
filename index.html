@@ -4,35 +4,53 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <meta http-equiv="refresh" content="5; url=https://YOUR-NEW-WEBSITE.com">
     
     <style>
       body {
-        font-family: 'Times New Roman', Times, serif;
+        /* 2. APPLY THE FONT HERE */
+        font-family: 'Press Start 2P', cursive;
+        
         text-align: center;
         margin-top: 20%;
-        background-color: #f4f4f4;
+        background-color: #202020; /* Dark background matches pixel fonts better */
+        color: #00ff00;            /* Bright green text for that "Terminal" look */
       }
-  
+      .container {
+        padding: 20px;
+        display: inline-block;
+      }
+      a {
+        color: #ffffff; /* White links */
+      }
     </style>
   </head>
   
   <body>
-
-      <h1>Redirecting</h1>
-      <p>Redirecting you in <b id="countdown">5</b> seconds...</p>
-  
+    <div class="container">
+      <h2 style="font-size: 1.5em; line-height: 1.5;">WARPING...</h2>
+      
+      <p style="font-size: 0.8em; margin-top: 20px;">
+        NEW ZONE LOADING IN <br>
+        <span id="countdown" style="font-size: 2em;">5</span>
+      </p>
+      
+      <p style="font-size: 0.6em; margin-top: 30px;">
+        <a href="https://YOUR-NEW-WEBSITE.com">[ SKIP INTRO ]</a>
+      </p>
+    </div>
 
     <script type="text/javascript">
-      // 1. Destination URL
-      var destination = "https://forms.gle/ZXSmeGH9NDxFuLKj8";
-
-      // 2. JavaScript Delay (5000 milliseconds = 5 seconds)
+      var destination = "https://YOUR-NEW-WEBSITE.com";
+      
       setTimeout(function() {
         window.location.replace(destination);
       }, 5000);
 
-      // 3. Optional: Visual Countdown Timer
       var seconds = 5;
       setInterval(function() {
         seconds--;
@@ -41,7 +59,5 @@
         }
       }, 1000);
     </script>
-
   </body>
-
 </html>
