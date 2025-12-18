@@ -1,4 +1,3 @@
-# My first website
+# A redirecter site
 
-Hello everyone, this is my first time making a website!
-Contains some of the literary works of mine, hope its not boring o7
+This site re-routes anyone who opens this to page
