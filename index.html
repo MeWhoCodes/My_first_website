@@ -33,16 +33,16 @@
 
     #timer-text {
       font-size: 0.8rem;
-      margin-bottom: 50px; /* Extra space for the cat on top of bar */
+      margin-bottom: 50px;
     }
 
     /* THE BAR CONTAINER */
     .progress-container {
       width: 300px;
       max-width: 80%;
-      height: 30px; /* Height of the bar */
+      height: 30px;
       border: 4px solid black;
-      position: relative; /* Needed for positioning the cat */
+      position: relative;
       background: white;
       box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
     }
@@ -58,18 +58,22 @@
     /* THE CAT GIF POSITIONING */
     .cat-gif {
       position: absolute;
-      /* This puts the cat in the horizontal CENTER of the bar */
       left: 50%;
       transform: translateX(-50%);
-      
-      /* Adjust this to move the cat UP so it sits ON the bar */
-      /* Since the GIF size varies, you might need to tweak this number */
-      bottom: 35; 
-      
-      width: 60px; /* Size of the cat */
+      bottom: 28px; 
+      width: 60px;
       height: auto;
-      image-rendering: pixelated; /* Keeps the GIF sharp */
+      image-rendering: pixelated;
       z-index: 10;
+    }
+
+    /* THE WATERMARK (D-Originals) */
+    .watermark {
+      position: fixed; /* Pins it to the screen */
+      bottom: 15px;    /* Distance from bottom */
+      right: 15px;     /* Distance from right */
+      font-size: 0.5rem; /* Very small text */
+      opacity: 0.6;    /* Slightly faded */
     }
 
     @keyframes fillBar {
@@ -88,19 +92,19 @@
   <div id="timer-text">Redirecting in <span id="countdown">5</span> seconds</div>
 
   <div class="progress-container">
-    
     <img 
-      src="https://media.tenor.com/RyF8iVDEf3cAAAAj/16bit-80s.gif" 
+      src="https://media.tenor.com/On7KVXv5hQAAAAAj/16bit-80s.gif" 
       alt="Walking Cat" 
       class="cat-gif"
     >
-    
     <div class="progress-fill"></div>
   </div>
   
   <p style="margin-top: 40px; font-size: 0.6rem;">
     <a href="https://forms.gle/ZXSmeGH9NDxFuLKj8">[ SKIP ]</a>
   </p>
+
+  <div class="watermark">a D-Originals</div>
 
   <script>
     var destination = "https://forms.gle/ZXSmeGH9NDxFuLKj8";
