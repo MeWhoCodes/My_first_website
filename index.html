@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-  <meta http-equiv="refresh" content="5; url=https://forms.gle/ZXSmeGH9NDxFuLKj8">
+  <meta http-equiv="refresh" content="5; url=forms.gle/ZXSmeGH9NDxFuLKj8">
 
   <style>
     body {
@@ -33,8 +33,7 @@
 
     #timer-text {
       font-size: 0.8rem;
-      /* Increased margin so the cat doesn't hit the text */
-      margin-bottom: 60px; 
+      margin-bottom: 60px; /* Space for the cat */
     }
 
     /* THE BAR CONTAINER */
@@ -56,23 +55,41 @@
       animation: fillBar 5s linear forwards;
     }
 
-    /* THE CAT GIF POSITIONING */
-    .cat-gif {
+    /* THE CAT CONTAINER (Positions the cat on the bar) */
+    .cat-wrapper {
       position: absolute;
+      /* This puts the cat's container exactly at the top edge of the bar */
+      bottom: 30px; 
+      /* Centers it horizontally */
       left: 50%;
-      transform: translateX(-50%) scaleX(-1); /* Added scaleX(-1) if cat faces wrong way */
-      
-      /* VERTICAL POSITIONING */
-      /* 30px (bar height) + 4px (border) = 34px to sit on top */
-      bottom: 34px; 
-      
-      width: 60px;
-      height: auto;
-      image-rendering: pixelated;
+      transform: translateX(-50%);
       z-index: 10;
     }
 
-    /* THE WATERMARK */
+    /* THE CAT (Drawn with pure CSS code - No Image Link Needed) */
+    .cat {
+      width: 4px; 
+      height: 4px;
+      color: black;
+      /* The bounce animation makes it look like it's walking */
+      animation: walkBounce 0.4s infinite alternate;
+      
+      /* THIS IS THE PIXEL ART MAP */
+      box-shadow: 
+        /* Body */
+        12px 0, 16px 0, 
+        8px 4px, 12px 4px, 16px 4px, 20px 4px,
+        4px 8px, 8px 8px, 12px 8px, 16px 8px, 20px 8px, 24px 8px,
+        4px 12px, 8px 12px, 12px 12px, 16px 12px, 20px 12px, 24px 12px,
+        /* Legs */
+        4px 16px, 8px 16px, 20px 16px, 24px 16px,
+        /* Head */
+        24px 0, 28px 4px, 24px 4px, 28px 8px,
+        /* Tail */
+        0px 4px, 0px 8px; 
+    }
+
+    /* WATERMARK */
     .watermark {
       position: fixed;
       bottom: 15px;
@@ -81,9 +98,15 @@
       opacity: 0.6;
     }
 
+    /* ANIMATIONS */
     @keyframes fillBar {
       from { width: 0%; }
       to { width: 100%; }
+    }
+
+    @keyframes walkBounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-4px); }
     }
 
     a { color: black; text-decoration: none; border-bottom: 2px solid black; }
@@ -97,22 +120,21 @@
   <div id="timer-text">Redirecting in <span id="countdown">5</span> seconds</div>
 
   <div class="progress-container">
-    <img 
-      src="https://media.tenor.com/On7KVXv5hQAAAAAj/16bit-80s.gif" 
-      alt="Walking Cat" 
-      class="cat-gif"
-    >
+    <div class="cat-wrapper">
+      <div class="cat"></div>
+    </div>
+    
     <div class="progress-fill"></div>
   </div>
   
   <p style="margin-top: 40px; font-size: 0.6rem;">
-    <a href="https://forms.gle/ZXSmeGH9NDxFuLKj8">[ SKIP ]</a>
+    <a href="forms.gle/ZXSmeGH9NDxFuLKj8">[ SKIP ]</a>
   </p>
 
   <div class="watermark">a D-Originals</div>
 
   <script>
-    var destination = "https://forms.gle/ZXSmeGH9NDxFuLKj8";
+    var destination = "forms.gle/ZXSmeGH9NDxFuLKj8";
 
     setTimeout(function() {
       window.location.replace(destination);
