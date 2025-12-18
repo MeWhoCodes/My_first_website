@@ -1,59 +1,156 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-    <meta http-equiv="refresh" content="5; url=https://forms.gle/ZXSmeGH9NDxFuLKj8">
-    
-    <style>
-      body {
-        /* 2. APPLY THE FONT HERE */
-        font-family: 'Press Start 2P', cursive;
-        font-size: 60px;
-        text-align: center;
-        margin-top: 20%;
-        background-color: antiquewhite; /* Dark background matches pixel fonts better */
-        color: #000000;            /* Bright green text for that "Terminal" look */
-      }
-      .container {
-        padding: 20px;
-        display: inline-block;
-      }
-   
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
   
-  <body>
-    <div class="container">
-      <h1 style="font-size: 1.5em; line-height: 1.5;">WARPING...</h1>
-      
-      <p style="font-size: 0.8em; margin-top: 20px;">
-        Redirecting in..<br>
-        <span id="countdown" style="font-size: 2em;">5</span>
-      </p>
-      
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
+  <meta http-equiv="refresh" content="5; url=https://forms.gle/ZXSmeGH9NDxFuLKj8">
+
+  <style>
+    /* BASIC PAGE SETUP */
+    body {
+      background-color: antiquewhite; /* Antique White */
+      color: black;
+      font-family: 'Press Start 2P', cursive; /* Pixel Font */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full screen height */
+      margin: 0;
+      text-align: center;
+      overflow: hidden; /* Prevents scrollbars during animation */
+    }
+
+    /* TEXT STYLES */
+    h1 {
+      font-size: 1.5rem; /* Responsive font size */
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    #timer-text {
+      font-size: 0.8rem;
+      margin-bottom: 40px;
+      opacity: 0.8;
+    }
+
+    /* PROGRESS BAR CONTAINER */
+    .progress-container {
+      width: 300px;
+      max-width: 80%;
+      height: 20px;
+      border: 4px solid black;
+      position: relative;
+      background: white;
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+    }
+
+    /* THE FILLING BAR */
+    .progress-fill {
+      height: 100%;
+      background-color: black;
+      width: 0%; /* Starts at 0 */
+      /* This animates the width to 100% over 5 seconds linear */
+      animation: fillBar 5s linear forwards; 
+    }
+
+    /* THE WALKING CAT CONTAINER */
+    .cat-wrapper {
+      position: absolute;
+      top: -28px; /* Sit on top of the bar */
+      left: 0%;   /* Starts at left */
+      /* Moves across the screen matching the bar */
+      animation: moveCat 5s linear forwards; 
+    }
+
+    /* THE CSS PIXEL CAT DRAWING */
+    /* This draws a cat using box-shadows (no image file needed!) */
+    .cat {
+      width: 4px; 
+      height: 4px;
+      color: black;
+      /* The "Walking" bounce animation */
+      animation: walkBounce 0.4s infinite alternate;
+      
+      /* THE PIXEL ART MAP (Box Shadow Art) */
+      box-shadow: 
+        /* Body */
+        12px 0, 16px 0, 
+        8px 4px, 12px 4px, 16px 4px, 20px 4px,
+        4px 8px, 8px 8px, 12px 8px, 16px 8px, 20px 8px, 24px 8px,
+        4px 12px, 8px 12px, 12px 12px, 16px 12px, 20px 12px, 24px 12px,
+        /* Legs */
+        4px 16px, 8px 16px, 20px 16px, 24px 16px,
+        /* Head */
+        24px 0, 28px 4px, 24px 4px, 28px 8px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fillBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    @keyframes moveCat {
+      from { left: 0%; }
+      /* We subtract 30px so the cat doesn't walk off the edge */
+      to { left: calc(100% - 30px); } 
+    }
+
+    @keyframes walkBounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-4px); }
+    }
+
+    /* MOBILE TWEAKS */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.2rem; }
+      .progress-container { width: 80%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Redirecting...</h1>
+  
+  <div id="timer-text">Redirecting in <span id="countdown">5</span> seconds</div>
+
+  <div class="progress-container">
+    <div class="progress-fill"></div>
+    <div class="cat-wrapper">
+      <div class="cat"></div>
     </div>
+  </div>
+  
+  <p style="margin-top: 30px; font-size: 0.6rem;">
+    <a href="https://forms.gle/ZXSmeGH9NDxFuLKj8" style="color: black;">[ CLICK TO SKIP ]</a>
+  </p>
 
-    <script type="text/javascript">
-      var destination = "https://forms.gle/ZXSmeGH9NDxFuLKj8";
-      
-      setTimeout(function() {
-        window.location.replace(destination);
-      }, 5000);
+  <script>
+    // 1. SET YOUR NEW LINK HERE
+    var destination = "https://forms.gle/ZXSmeGH9NDxFuLKj8";
 
-      var seconds = 5;
-      setInterval(function() {
-        seconds--;
-        if (seconds >= 0) {
-          document.getElementById("countdown").textContent = seconds;
-        }
-      }, 1000);
-    </script>
-  </body>
+    // 2. JAVASCRIPT REDIRECT BACKUP (Syncs with CSS animation)
+    setTimeout(function() {
+      window.location.replace(destination);
+    }, 5000);
+
+    // 3. COUNTDOWN TEXT UPDATE
+    var seconds = 5;
+    setInterval(function() {
+      seconds--;
+      if (seconds >= 0) {
+        document.getElementById("countdown").textContent = seconds;
+      }
+    }, 1000);
+  </script>
+
+</body>
 </html>
